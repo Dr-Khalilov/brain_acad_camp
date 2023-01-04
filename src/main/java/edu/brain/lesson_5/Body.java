@@ -1,6 +1,6 @@
 package edu.brain.lesson_5;
 
-public class Body {
+class Body {
     private String type;
     private String colour;
 
