@@ -1,45 +1,66 @@
 package edu.brain.lesson_13;
 
-import java.util.Scanner;
+import edu.brain.lesson_13.abstracts.AbstractDevice;
+import edu.brain.lesson_13.interfaces.MailSender;
 
 class Main {
     public static void main(String[] args) {
-        User director = new User("NeoLog123", "123456", "Umar");
-        director.setRole(UserRoles.DIRECTOR);
+        SmartPhone nokia = new SmartPhone();
+        nokia.name = "Nokia 5.3";
+        nokia.serialNumber = 10000000;
+        nokia.display = 6.55f;
+        nokia.simCount = 2;
+        nokia.os = "Android One 10";
+        nokia.powerOn();
+        nokia.runApp();
+        nokia.call();
+        nokia.powerOff();
 
-        User administrator = new User("cjxcs", "434424", "Slava");
-        administrator.setRole(UserRoles.ADMINISTRATOR);
+        MultiCooker scarlet = new MultiCooker();
+        scarlet.name = "Scarlet";
+        scarlet.serialNumber = 12345678;
+        scarlet.powerOn();
+        scarlet.switchProgram(30);
+        scarlet.cook();
+        scarlet.powerOff();
 
+        Oven oven = new Oven();
+        oven.name = "Gorenje";
+        oven.serialNumber = 313231;
+        oven.powerOn();
+        oven.initTimer(40);
+        oven.cook();
+        oven.powerOff();
+        System.out.println();
 
-        User manager = new User("mykhaylov191", "243932749234", "Владик");
-        manager.setRole(UserRoles.MANAGER);
+        System.out.println("------------------------------------------------");
 
+        SmartPhone phone = new SmartPhone();
+        phone.calls();
+        phone.createMail("Васёк побежал");
+        phone.sendMail("Отправить");
 
-        User customer = new User("Papan", "38984928", "Вася");
-        customer.setRole(UserRoles.CUSTOMER);
+        DialPhone dialPhone = new DialPhone();
+        dialPhone.calls();
 
-        User anonymous = new User("uruk221", "e47854875", "Petya");
+        Post post = new Post();
+        post.createMail("lalalalala");
+        post.sendMail("send");
 
-        User[] users = {customer, manager, director, administrator, anonymous};
-        Store adidas = new Store("Adidas", "www.adidas.com", users);
+        allPowerOff(oven, scarlet, nokia);
 
+        allMailing(phone, nokia, post);
+    }
 
-        while (true) {
-            tryLogin(adidas);
+    static void allPowerOff(AbstractDevice... devices) {
+        for (AbstractDevice device : devices) {
+            device.powerOff();
         }
     }
 
-    static void tryLogin(Store store) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите логин:");
-        String login = scanner.nextLine();
-        System.out.println("Введите пароль:");
-        String password = scanner.nextLine();
-        if (store.login(login, password)) {
-            store.getCurrentUserRights(store.getAuthorizedUser());
-            store.logout();
-        } else {
-            System.out.println("Неверный логин или пароль");
+    static void allMailing(MailSender... senders) {
+        for (MailSender sender : senders) {
+            sender.sendMail("Рассылка писем всем");
         }
     }
 }
