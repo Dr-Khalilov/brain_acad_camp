@@ -1,4 +1,4 @@
-## This is list lesson with some tasks from Brain Academy
+## This is list lessons with some tasks from Brain Academy
 
 ## Installation
 
