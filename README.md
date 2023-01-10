@@ -3,7 +3,7 @@
 ## Installation
 
 - Clone the repository to your computer
-- Install java-19
+- Install JDK-19
 - Pick packages and run main class or main methods
 
 ### Enjoy it!
